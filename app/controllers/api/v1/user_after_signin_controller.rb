@@ -6,7 +6,29 @@ module Api
 
       before_action :authenticate_user, except: [:authenticate_user]
 
-      
+      def all_products
+        products = Product.all
+
+        products_and_reviews=Hash.new
+        products.each do |p|
+          product = p.product_and_reviews
+          products_and_reviews[p.id] = product
+        end
+
+        response_data(products_and_reviews , "All products and reviews" ,200)
+      end 
+
+      def products_and_reviews
+        products = current_user_api.products_reviewed
+        products_and_reviews=Hash.new
+        products.each do |p|
+          product = p.product_and_reviews
+          products_and_reviews[p.id] = product
+        end
+
+        response_data(products_and_reviews , "Products and Reviews" , 200)  
+
+      end   
       
       def authenticate_user
         authenticate_with_http_token do |token, options|

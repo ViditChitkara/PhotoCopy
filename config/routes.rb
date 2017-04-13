@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       post '/admin_sign_up' => 'admin_before_signin#sign_up'
 
       get '/all_users' => 'admin_after_signin#all_users'
+      get '/admin_products' => 'admin_after_signin#admin_products'
+      get '/admin_products_and_reviews' => 'admin_after_signin#products_and_reviews'
+      get '/all_products' => 'user_after_signin#all_products'
+      get '/user_products_and_reviews' => 'user_after_signin#products_and_reviews'
     end
   end
 

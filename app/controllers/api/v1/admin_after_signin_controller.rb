@@ -9,8 +9,25 @@ module Api
       def all_users
         all_users = User.all
         response_data(all_users , "All users" , 200)
-      end      
+      end  
+
+      def admin_products
+        products = current_admin_api.all_products
+        response_data(products , "Products of This Admin" , 200)
+      end    
       
+      def products_and_reviews
+        products = current_admin_api.all_products
+        products_and_reviews=Hash.new
+        products.each do |p|
+          product = p.product_and_reviews
+          products_and_reviews[p.id] = product
+        end
+
+        response_data(products_and_reviews , "Products and Reviews" , 200)  
+
+      end
+
       def authenticate_admin 
         authenticate_with_http_token do |token, options|
           @current_admin_api = Admin.find_by_access_token(token)

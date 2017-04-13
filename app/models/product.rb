@@ -11,4 +11,11 @@ class Product < ActiveRecord::Base
   	self.users.all
   end
 
+  def product_and_reviews
+  	product = Hash.new
+    product[:product] = self
+    product[:reviews] = self.all_reviews
+    product
+  end
+
 end

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersLoggedInController < ::ApiController
+    class UserAfterSigninController < ::ApiController
 
       include ActionController::HttpAuthentication::Token::ControllerMethods
 

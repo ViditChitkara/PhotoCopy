@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       post '/user_sign_up' => 'user_before_signin#sign_up'
       post '/admin_sign_in' => 'admin_before_signin#sign_in'
       post '/admin_sign_up' => 'admin_before_signin#sign_up'
+
+      get '/all_users' => 'admin_after_signin#all_users'
     end
   end
 

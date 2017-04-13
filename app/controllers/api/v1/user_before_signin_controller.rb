@@ -32,6 +32,8 @@ module Api
           return response_data({} , "Email already taken" , 200)
         else
           if password==reconfirm_password
+            user = User.create(:email => email , :password => password , :password_confirmation => reconfirm_password)
+            user.save
             return response_data({} , "user successfully created" , 200)
           else
             return response_data({} , "password and confirmation password not matching" , 200)

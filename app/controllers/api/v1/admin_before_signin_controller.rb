@@ -32,6 +32,8 @@ module Api
           return response_data({} , "Email already taken" , 200)
         else
           if password==reconfirm_password
+            admin = Admin.create(:email => email , :password => password , :password_confirmation => reconfirm_password)
+            admin.save
             return response_data({} , "Admin successfully created" , 200)
           else
             return response_data({} , "password and confirmation password not matching" , 200)

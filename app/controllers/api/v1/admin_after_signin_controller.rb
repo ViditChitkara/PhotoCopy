@@ -1,12 +1,15 @@
 module Api
   module V1
-    class AdminsLoggedInController < ::ApiController
+    class AdminAfterSigninController < ::ApiController
 
       include ActionController::HttpAuthentication::Token::ControllerMethods
 
       before_action :authenticate_admin, except: [:authenticate_admin]
 
-      
+      def all_users
+        all_users = User.all
+        response_data(all_users , "All users" , 200)
+      end      
       
       def authenticate_admin 
         authenticate_with_http_token do |token, options|
